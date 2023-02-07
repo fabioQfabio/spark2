@@ -63,6 +63,34 @@ object Challenges extends App {
   //df_best_apps.coalesce(1).write.options(Map("header"->"true", "delimiter"->"$")).csv("src/main/resources/best_apps.csv")
 
 
+  //-------------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------
+
+
+  //df_store.sort(col("App"),col("Reviews").desc).show()
+
+  /** Part 3
+   * Makes App an unique value, putting all categories in a list and selecting the max value of reviews.
+   * Then it joins with the original df.
+   */
+  val df_3_category = df_store.groupBy("App")
+    .agg(
+      collect_set("Category").alias("Categories"),
+      max("Reviews").alias("Reviews")
+    )
+
+  val df_3 = df_store.join(df_3_category, Seq("App","Reviews"),"inner").drop("Category").sort("App")
+
+  //-------------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------
+
+  /** Part 4
+   * Joins df_1 and df_3 and saves in a parquet file.
+   */
+  val df_3and1 = df_1.join(df_3,df_1("App") ===  df_3("App"),"outer")
+  df_3and1.write.parquet("src/main/resources/googleplaystore_cleaned")
 }
 
 
