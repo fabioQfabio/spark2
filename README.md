@@ -2,7 +2,12 @@
 
 ## index
 * [What it is](#what-it-is)
-* [Notes](#exercises)
+* [Exercises](#exercises)
+* [Part 1](#part-1)
+* [Part 2](#part-2)
+* [Part 3](#part-3)
+* [Part 4](#part-4)
+* [Part 5](#part-5)
 * [More Notes](#more-notes)
 
 ## What it is
