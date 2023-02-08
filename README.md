@@ -64,5 +64,5 @@ TODO
 _______________________________________________________________
 
 ### More Notes
-TODO
+This was developed using IntelliJ IDE, creating a new maven project
 
